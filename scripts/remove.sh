@@ -3,7 +3,7 @@
 # removes the git repo in printer_data
 # removes the cron job
 # removes the printerbackup.sh script
-# does not remove the printer_data folder
+# does not remove the printer_data folder or anything in it
 # does not remove the hosted github repo
 # does not undo git config
 

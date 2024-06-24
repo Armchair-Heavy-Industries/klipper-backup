@@ -9,14 +9,21 @@ curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo 
     && sudo apt update \
     && sudo apt install gh -y
 
+
+echo ""
+echo "---------"
 echo "logging you into github... please follow the prompts";
-echo "typically you'll want to select 'github.com' and then 'HTTPS'";
+echo ""
+echo "typically you'll want to select 'github.com' and then 'HTTPS', then 'Y'";
+echo ""
 echo "you'll need to manually open the link in a browser."
-read -p "Press any key to continue to login..."
+echo "---------"
+read -p "Press enter to continue to login..."
 
 gh auth login
 git config --global user.email $EMAIL
 git config --global user.name $FULLNAME
+
 
 printf "cd /home/$USERNAME/printer_data\ngit add .\ngit commit -m "backup"\ngit push -u origin $BRANCHNAME\n" > /home/$USERNAME/printerbackup.sh
 chmod +x /home/$USERNAME/printerbackup.sh

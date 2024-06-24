@@ -1,17 +1,16 @@
-export NAME="your printer's name"
-export EMAIL="your github email"
-export FULLNAME="your github name"
-export GHUSERNAME="your github username"
+#!/bin/bash
+
+source ./config_vars
 
 #error if name is still default
-if [ $NAME == "your printer's name" ]; then
-    echo "Please set your printer's name in run.sh"
+if [ "$NAME" == "your printer's name" ]; then
+    echo "Please set your printer's name in config.sh!"
     exit 1
 fi
 
-export USERNAME=pi
+export USERNAME=$(whoami)
 export REPONAME=$NAME\_backup
-export BRANCHNAME=master # sometimes this is main
+# export BRANCHNAME=$(cd ~/printer_data && git remote show origin | sed -n '/HEAD branch/s/.*: //p')
 
 # --restore, --backup, --remove
 # error if both --restore and --backup are passed
@@ -20,7 +19,7 @@ if [ $# -eq 0 ]; then
     echo "please pass --restore, --backup, or --remove"
     exit 1
 elif [ $# -eq 1 ]; then
-    elif [ $1 == "--remove" ]; then
+    if [ $1 == "--remove" ]; then
         echo "Removing..."
         bash scripts/remove.sh
     elif [ $1 == "--restore" ]; then
@@ -36,6 +35,7 @@ elif [ $# -eq 1 ]; then
     else
         echo "Invalid argument. Please pass --restore or --backup, or --remove"
         exit 1
+    fi
 else 
     echo "Please pass only one argument"
     exit 1

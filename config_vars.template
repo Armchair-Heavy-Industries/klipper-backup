@@ -1,0 +1,8 @@
+#!/bin/bash
+
+
+export NAME="your printer's name"
+export EMAIL="your github email" # used for git config
+export FULLNAME="your github name" # used for git config
+export GHUSERNAME="your github username"
+export BRANCHNAME=master # might be main
